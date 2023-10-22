@@ -1,0 +1,28 @@
+name: Cross Compile C File
+
+on:
+  push:
+    branches:
+      - Main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Cross-Compiler (e.g., for ARM)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-linux-gnueabihf
+
+    - name: Build helloWorld.c
+      run: |
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: cross_compiled_binary
+        path: cross_compiled_binary
