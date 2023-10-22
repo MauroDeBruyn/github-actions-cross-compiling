@@ -1,0 +1,29 @@
+name: Cross Compile for PYNQ-Z2
+
+on:
+  push:
+    branches:
+      - Main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Cross-Compiler for ARM Cortex-A9
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-linux-gnueabihf
+
+    - name: Build C File for PYNQ-Z2
+      run: |
+        arm-linux-gnueabihf-gcc -o helloPynq.exe helloWorld.c
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: helloPynq.exe
+        path: helloPynq.exe
