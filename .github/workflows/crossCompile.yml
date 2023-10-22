@@ -22,7 +22,7 @@ jobs:
       run: |
         arm-linux-gnueabihf-gcc helloWorld.c -o helloWorld.exe
 
-    - name: Upload executable
+    - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: helloWorld.exe
